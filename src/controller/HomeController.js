@@ -307,7 +307,7 @@ async function handlePostback(sender_psid, received_postback) {
             response = { "text": "Tiếc quá, bạn hãy thử lại bằng hình hác nhé" }
             break;
         case 'CARE_HELP':
-            response = { "text": "Bạn đã tắt chatbot, nhân viên sẽ trả lời bạn trong vòng ít phút nữa" }
+            await chatbotService.handleGetStarted(sender_psid);
             break;
 
         case 'RESTART_BOT':
