@@ -274,12 +274,12 @@ async function handleMessage(sender_psid, received_message) {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Yes!",
+                                "title": "Đúng!",
                                 "payload": "yes",
                             },
                             {
                                 "type": "postback",
-                                "title": "No!",
+                                "title": "Không phải!",
                                 "payload": "no",
                             }
                         ],
@@ -300,11 +300,14 @@ async function handlePostback(sender_psid, received_postback) {
     let payload = received_postback.payload;
 
     switch (payload) {
-        case 'Đúng':
+        case 'yes':
             response = { "text": "Cảm ơn bạn, bạn vui lòng chời một chút để nhân viên phẩn hồi nhé!" }
             break;
-        case 'Không phải':
+        case 'no':
             response = { "text": "Tiếc quá, bạn hãy thử lại bằng hình hác nhé" }
+            break;
+        case 'CARE_HELP':
+            response = { "text": "Bạn đã tắt chatbot, nhân viên sẽ trả lời bạn trong vòng ít phút nữa" }
             break;
 
         case 'RESTART_BOT':
@@ -338,9 +341,7 @@ async function handlePostback(sender_psid, received_postback) {
             await chatbotService.hotProducts(sender_psid)
             break;
 
-        case 'CARE_HELP':
-            response = { "text": "Tiếc quá, bạn hãy thử lại bằng hình hác nhé" }
-            break;
+
 
         default:
             response = { "text": `oop! response: ${payload}` }
