@@ -339,7 +339,7 @@ async function handlePostback(sender_psid, received_postback) {
             break;
         case "CARE_HELP":
             response = { "text": "Bạn đã tắt chatbot. Nhân viên sẽ đến trong một vài phút." };
-            chatbotService.passThreadControl(sender_psid);
+            // chatbotService.passThreadControl(sender_psid);
             break;
 
         default:
