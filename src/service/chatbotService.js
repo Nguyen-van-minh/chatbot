@@ -131,12 +131,12 @@ let getStatedTemplate = () => {
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Danh mục sản phẩm?",
+                            "title": "Danh mục sản phẩm!",
                             "payload": "SHOW_CATEGORY",
                         },
                         {
                             "type": "postback",
-                            "title": "Về shop?",
+                            "title": "Về shop",
                             "payload": "ABOUT",
                         }
                     ],
@@ -707,10 +707,8 @@ let passThreadControl = (sender_psid) => {
             "metadata": "Pass this conversation to the page inbox"
         };
 
-        // Send the HTTP request to the Messenger Platform
         request({
-            "uri": "https://graph.facebook.com/v9.0/me/messages",
-            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "uri": `https://graph.facebook.com/v6.0/me/pass_thread_control?access_token=${PAGE_ACCESS_TOKEN}`,
             "method": "POST",
             "json": request_body
         }, (err, res, body) => {
