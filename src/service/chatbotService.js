@@ -725,7 +725,7 @@ let passThreadControl = (sender_psid) => {
 };
 
 let takeControlConversation = (sender_psid) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         let request_body = {
             "recipient": {
                 "id": sender_psid

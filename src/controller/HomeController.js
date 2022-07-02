@@ -44,18 +44,7 @@ let postWebhook = (req, res) => {
 
         // Iterates over each entry - there may be multiple if batched
         body.entry.forEach(function (entry) {
-            // check the incoming message, standby event. if the conversation belong to page inbox, return.
-            if (entry.standby) {
-                let webhook_standby = entry.standby[0];
-                if (webhook_standby && webhook_standby.message) {
-                    if (webhook_standby.message.text === "back" || webhook_standby.message.text === "exit") {
-                        //if user's message is "back" or "exit", return the conversation to the bot
-                        chatbotService.takeControlConversation(webhook_standby.sender.id);
-                    }
-                }
 
-                return;
-            }
             // Gets the body of the webhook event
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
@@ -324,6 +313,7 @@ async function handlePostback(sender_psid, received_postback) {
         case 'RESTART_BOT':
         case 'GET_STARTED':
             await chatbotService.handleGetStarted(sender_psid);
+            await chatbotService.takeControlConversation(sender_psid);
             break;
 
         case 'SHOW_CATEGORY':
