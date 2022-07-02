@@ -3,6 +3,7 @@ const Product = require('../modal/Product')
 
 require('dotenv').config();
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const PAGE_INBOX_ID = process.env.PAGE_INBOX_ID;
 const IMAGE_GET_STARTED = "https://bizweb.dktcdn.net/100/438/408/articles/he-thong-cua-hang16-z2626228850334-98bfbc6f8e881a9ce60213cb72f4e6af-yody-vn.jpg?v=1634625411703";
 const IMAGE_GET_CATEGORY = "https://cdn.hpdecor.vn/wp-content/uploads/2022/05/yody-9.jpg";
 const IMAGE_CONTRACT = "https://cafebiz.cafebizcdn.vn/162123310254002176/2021/7/31/photo-4-16277004079791975265066.jpg";
@@ -696,7 +697,31 @@ let getVestTemplate = async () => {
     return response;
 }
 
+let passThreadControl = (sender_psid) => {
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            "recipient": {
+                "id": sender_psid
+            },
+            "target_app_id": PAGE_INBOX_ID,
+            "metadata": "Pass this conversation to the page inbox"
+        };
 
+        // Send the HTTP request to the Messenger Platform
+        request({
+            "uri": "https://graph.facebook.com/v9.0/me/messages",
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "POST",
+            "json": request_body
+        }, (err, res, body) => {
+            if (!err) {
+                resolve("done")
+            } else {
+                reject("Unable to send message:" + err);
+            }
+        });
+    });
+};
 
 module.exports = {
     handleGetStarted: handleGetStarted,
@@ -712,4 +737,5 @@ module.exports = {
     handleSendShowThatLung: handleSendShowThatLung,
     handleSendShowVi: handleSendShowVi,
     handleSendShowVest: handleSendShowVest,
+    passThreadControl: passThreadControl,
 }

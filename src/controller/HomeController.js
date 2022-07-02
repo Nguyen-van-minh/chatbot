@@ -337,7 +337,10 @@ async function handlePostback(sender_psid, received_postback) {
         case 'HOT_PRODUCTS':
             await chatbotService.hotProducts(sender_psid)
             break;
-
+        case "CARE_HELP":
+            response = { "text": "Bạn đã tắt chatbot. Nhân viên sẽ đến trong một vài phút." };
+            chatbotService.passThreadControl(sender_psid);
+            break;
 
         default:
             response = { "text": `oop! response: ${payload}` }
@@ -405,7 +408,7 @@ let setupPersistentMenu = async (req, res) => {
                 "call_to_actions": [
                     {
                         "type": "postback",
-                        "title": "Talk to an agent",
+                        "title": "Nói chuyện với nhân viên",
                         "payload": "CARE_HELP"
                     },
                     {
