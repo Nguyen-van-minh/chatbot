@@ -698,17 +698,20 @@ let getVestTemplate = async () => {
 }
 
 let passThreadControl = (sender_psid) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         let request_body = {
             "recipient": {
                 "id": sender_psid
             },
-            "target_app_id": PAGE_INBOX_ID,
-            "metadata": "Pass this conversation to the page inbox"
+            "target_app_id": 263902037430900,
+            "metadata": "String to pass to secondary receiver app"
         };
 
+        let response1 = { "text": `Bạn đã tắt chatbot, xin vui lòng đợi nhân viên trả lời trong ít phút!` };
+        await callSendAPI(sender_psid, response1);
+
         request({
-            "uri": `https://graph.facebook.com/v6.0/me/pass_thread_control?access_token=${PAGE_ACCESS_TOKEN}`,
+            "uri": `https://graph.facebook.com/v11.0/me/pass_thread_control?access_token=${PAGE_ACCESS_TOKEN}`,
             "method": "POST",
             "json": request_body
         }, (err, res, body) => {
