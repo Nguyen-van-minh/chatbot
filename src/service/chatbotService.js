@@ -724,6 +724,32 @@ let passThreadControl = (sender_psid) => {
     });
 };
 
+let takeControlConversation = (sender_psid) => {
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            "recipient": {
+                "id": sender_psid
+            },
+            "metadata": "Pass this conversation to the user, turn on the bot"
+        };
+
+        request({
+            "uri": `https://graph.facebook.com/v11.0/me/pass_thread_control?access_token=${PAGE_ACCESS_TOKEN}`,
+            "method": "POST",
+            "json": request_body
+        }, async (err, res, body) => {
+            if (!err) {
+                let response1 = { "text": `Beautiful Chatbot đã trở lại!` };
+                await callSendAPI(sender_psid, response1);
+
+                resolve("done")
+            } else {
+                reject("Unable to send message:" + err);
+            }
+        });
+    });
+};
+
 module.exports = {
     handleGetStarted: handleGetStarted,
     handleSendCategory: handleSendCategory,
@@ -739,4 +765,5 @@ module.exports = {
     handleSendShowVi: handleSendShowVi,
     handleSendShowVest: handleSendShowVest,
     passThreadControl: passThreadControl,
+    takeControlConversation: takeControlConversation,
 }
