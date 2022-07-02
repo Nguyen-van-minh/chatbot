@@ -413,13 +413,13 @@ let setupPersistentMenu = async (req, res) => {
                     },
                     {
                         "type": "web_url",
-                        "title": "Tới shop",
+                        "title": "Tới shop!",
                         "url": "https://a36480nguyenvanminh.vercel.app/",
                         "webview_height_ratio": "full"
                     },
                     {
                         "type": "postback",
-                        "title": "Khởi động lại bot",
+                        "title": "Khởi động lại bot!",
                         "payload": "RESTART_BOT"
                     },
                 ]
