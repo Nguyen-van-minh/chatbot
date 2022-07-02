@@ -130,7 +130,7 @@ let getStatedTemplate = () => {
                     "buttons": [
                         {
                             "type": "postback",
-                            "title": "Sản phẩm?",
+                            "title": "Danh mục sản phẩm?",
                             "payload": "SHOW_CATEGORY",
                         },
                         {
