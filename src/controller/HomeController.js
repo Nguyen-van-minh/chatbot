@@ -342,8 +342,6 @@ async function handlePostback(sender_psid, received_postback) {
             await chatbotService.hotProducts(sender_psid)
             break;
 
-
-
         default:
             response = { "text": `oop! response: ${payload}` }
     }
@@ -463,7 +461,7 @@ let handlePostReserveTable = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             customerName: req.body.customerName
         }
-        console.log(data);
+
         await writeDataToGoogleSheet(data);
 
         let customerName = "";
