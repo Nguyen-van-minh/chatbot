@@ -17,7 +17,7 @@ window.extAsyncInit = function () {
         },
         function error(err) {
             // error
-            console.log('Lỗi bot', err);
+            console.log('Lỗi bot======================:', err);
 
             $("#psid").val(senderId);
             handleClickButtonReserveTable();
