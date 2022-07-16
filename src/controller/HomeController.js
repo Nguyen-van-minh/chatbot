@@ -9,7 +9,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
 const SHEET_ID = process.env.SHEET_ID;
 
-let a = null;
+let abc = null;
 
 let getHomePage = async (req, res) => {
     return res.render('homePage.ejs');
@@ -55,7 +55,7 @@ let postWebhook = (req, res) => {
 
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
-            a = sender_psid;
+            abc = sender_psid;
             console.log('Sender PSID: ' + sender_psid);
 
             // Check if the event is a message or postback and
@@ -457,8 +457,8 @@ let form = (req, res) => {
 
 let handlePostReserveTable = async (req, res) => {
     try {
-        let username = await chatbotService.getUsername(a);
-        console.log("username ==== :", username, "psiId==========: ", a)
+        let username = await chatbotService.getUsername(req.body.psid);
+        console.log("username ==== :", username, "psiId==========: ", req.body.psid)
         let data = {
             username: username,
             email: req.body.email,
