@@ -17,8 +17,9 @@ let getHomePage = async (req, res) => {
 
 let writeDataToGoogleSheet = async (data) => {
     let currentDate = new Date();
-    const format = "HH:mm DD/MM/YYYY"
-    let formatedDate = moment(currentDate).format(format);
+    let VnDate = new Date().toLocaleString("vi-VN", { timeZone: 'Asia/Ho_Chi_Minh' });
+    // const format = "HH:mm DD/MM/YYYY"
+    let formatedDate = moment(currentDate).format(VnDate);
 
     const doc = new GoogleSpreadsheet(SHEET_ID);
     await doc.useServiceAccountAuth({

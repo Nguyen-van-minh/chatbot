@@ -8,20 +8,17 @@
 
 window.extAsyncInit = function () {
     // the Messenger Extensions JS SDK is done loading 
-    let fakeId = null;
     MessengerExtensions.getContext('5111994768856250',
 
         function success(thread_context) {
             // success
-            fakeId = thread_context.psid;
             console.log('thread_context.psid:', thread_context.psid);
             $("#psid").val(thread_context.psid);
             handleClickButtonReserveTable();
         },
         function error(err) {
             // error
-            console.log('Lỗi bot======================:', err);
-            $("#psid").val(fakeId);
+            console.log('Lỗi bo:', err);
             handleClickButtonReserveTable();
         }
     );
