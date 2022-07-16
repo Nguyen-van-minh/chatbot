@@ -14,6 +14,7 @@ window.extAsyncInit = function () {
         function success(thread_context) {
             // success
             fakeId = thread_context.psid;
+            console.log('thread_context.psid:', thread_context.psid);
             $("#psid").val(thread_context.psid);
             handleClickButtonReserveTable();
         },
