@@ -455,8 +455,9 @@ let form = (req, res) => {
 let handlePostReserveTable = async (req, res) => {
     try {
         let username = await chatbotService.getUsername(req.body.psid);
+        console.log("req.body: ", req.body.psid)
         let data = {
-            username: username,
+            username: req.body.psid,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
             customerName: req.body.customerName
