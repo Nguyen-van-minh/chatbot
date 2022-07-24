@@ -256,6 +256,10 @@ async function handleMessage(sender_psid, received_message) {
             }
         }
 
+        else if (received_message.text.includes("Có ai chat được bây giờ không?")) {
+            await chatbotService.handleGetStarted(sender_psid);
+        }
+
 
         else {
             response = {
