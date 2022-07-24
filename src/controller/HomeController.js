@@ -305,10 +305,12 @@ async function handlePostback(sender_psid, received_postback) {
 
     switch (payload) {
         case 'yes':
-            response = { "text": "Cảm ơn bạn, bạn vui lòng chời một chút để nhân viên phẩn hồi nhé!" }
+            response = { "text": "Cảm ơn bạn, bạn vui lòng chời một chút để nhân viên phẩn hồi nhé!" };
+            callSendAPI(sender_psid, response);
             break;
         case 'no':
             response = { "text": "Tiếc quá, bạn hãy thử lại bằng hình hác nhé" }
+            callSendAPI(sender_psid, response);
             break;
         case 'CARE_HELP':
             await chatbotService.passThreadControl(sender_psid);
